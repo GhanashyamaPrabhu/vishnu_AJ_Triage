@@ -1,0 +1,273 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for medical application */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  /* Medical form components */
+  .medical-card {
+    @apply bg-white rounded-xl shadow-soft border border-gray-200 p-6;
+  }
+  
+  .section-title {
+    @apply text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200;
+  }
+  
+  .form-group {
+    @apply mb-4;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  
+  .form-input {
+    @apply block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm;
+  }
+  
+  .form-select {
+    @apply block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm;
+  }
+  
+  .form-textarea {
+    @apply block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm resize-none;
+  }
+  
+  /* Button styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200;
+  }
+  
+  .btn-primary {
+    @apply btn text-white bg-primary-600 hover:bg-primary-700 focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply btn text-gray-700 bg-white border-gray-300 hover:bg-gray-50 focus:ring-primary-500;
+  }
+  
+  .btn-medical {
+    @apply btn text-white bg-medical-600 hover:bg-medical-700 focus:ring-medical-500;
+  }
+  
+  .btn-danger {
+    @apply btn text-white bg-red-600 hover:bg-red-700 focus:ring-red-500;
+  }
+  
+  /* Triage category buttons */
+  .triage-btn {
+    @apply btn px-6 py-3 text-base font-semibold min-w-[120px];
+  }
+  
+  .triage-btn-red {
+    @apply triage-btn text-white bg-red-600 hover:bg-red-700 focus:ring-red-500 shadow-triage-red;
+  }
+  
+  .triage-btn-orange {
+    @apply triage-btn text-white bg-orange-600 hover:bg-orange-700 focus:ring-orange-500 shadow-triage-orange;
+  }
+  
+  .triage-btn-yellow {
+    @apply triage-btn text-white bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500 shadow-triage-yellow;
+  }
+  
+  .triage-btn-green {
+    @apply triage-btn text-white bg-green-600 hover:bg-green-700 focus:ring-green-500 shadow-triage-green;
+  }
+  
+  /* Selected state for triage buttons */
+  .triage-btn-red.selected {
+    @apply ring-4 ring-red-300 ring-opacity-50;
+  }
+  
+  .triage-btn-orange.selected {
+    @apply ring-4 ring-orange-300 ring-opacity-50;
+  }
+  
+  .triage-btn-yellow.selected {
+    @apply ring-4 ring-yellow-300 ring-opacity-50;
+  }
+  
+  .triage-btn-green.selected {
+    @apply ring-4 ring-green-300 ring-opacity-50;
+  }
+  
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-red {
+    @apply badge bg-red-100 text-red-800;
+  }
+  
+  .badge-orange {
+    @apply badge bg-orange-100 text-orange-800;
+  }
+  
+  .badge-yellow {
+    @apply badge bg-yellow-100 text-yellow-800;
+  }
+  
+  .badge-green {
+    @apply badge bg-green-100 text-green-800;
+  }
+  
+  .badge-blue {
+    @apply badge bg-blue-100 text-blue-800;
+  }
+  
+  .badge-gray {
+    @apply badge bg-gray-100 text-gray-800;
+  }
+  
+  /* Alert styles */
+  .alert {
+    @apply rounded-lg p-4 border;
+  }
+  
+  .alert-info {
+    @apply alert bg-blue-50 border-blue-200 text-blue-800;
+  }
+  
+  .alert-success {
+    @apply alert bg-green-50 border-green-200 text-green-800;
+  }
+  
+  .alert-warning {
+    @apply alert bg-yellow-50 border-yellow-200 text-yellow-800;
+  }
+  
+  .alert-error {
+    @apply alert bg-red-50 border-red-200 text-red-800;
+  }
+  
+  /* Vital signs input styles */
+  .vital-input {
+    @apply form-input text-center font-mono text-lg font-semibold;
+  }
+  
+  .vital-label {
+    @apply form-label text-center;
+  }
+  
+  .vital-unit {
+    @apply text-sm text-gray-500 ml-1;
+  }
+  
+  .vital-range {
+    @apply text-xs text-gray-400 mt-1 text-center;
+  }
+  
+  /* GCS button styles */
+  .gcs-btn {
+    @apply btn border-2 border-gray-300 text-gray-700 bg-white hover:bg-gray-50 min-w-[60px];
+  }
+  
+  .gcs-btn.selected {
+    @apply border-primary-500 bg-primary-50 text-primary-700;
+  }
+  
+  /* Loading spinner */
+  .spinner {
+    @apply animate-spin rounded-full border-2 border-gray-300 border-t-primary-600;
+  }
+  
+  /* Confidence slider */
+  .confidence-slider {
+    @apply w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer;
+  }
+  
+  .confidence-slider::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 bg-primary-600 rounded-full cursor-pointer;
+  }
+  
+  .confidence-slider::-moz-range-thumb {
+    @apply w-4 h-4 bg-primary-600 rounded-full cursor-pointer border-0;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Custom scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break {
+    page-break-before: always;
+  }
+  
+  body {
+    @apply text-black bg-white;
+  }
+}
