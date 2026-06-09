@@ -25,7 +25,7 @@ from models import (
     UserLogin, Token, CaseCreate, CaseResponse, CaseUpdate,
     PIICheckRequest, PIICheckResponse, GCSCalculationRequest, GCSCalculationResponse,
     HardRulesCheckRequest, HardRulesCheckResponse, AIAnalysisRequest, AIAnalysisResponse,
-    HealthCheckResponse, ErrorResponse
+    ErrorResponse
 )
 # No authentication needed
 from hard_rules import check_hard_rules
@@ -194,39 +194,15 @@ async def general_exception_handler(request: Request, exc: Exception):
 
 
 # Health check endpoint
-@app.get("/health", response_model=HealthCheckResponse, tags=["System"])
+@app.get("/health", tags=["System"])
 async def health_check():
-    """
-    System health check endpoint
-    
-    Returns system status, database connectivity, and AI service availability
-    """
-    # Check database
-    db_health = await database_health_check()
-    db_connected = db_health.get("status") == "healthy"
-    
-    # Check AI service (basic check)
-    ai_available = bool(os.getenv("ANTHROPIC_API_KEY"))
-    
-    # Calculate uptime
-    uptime_seconds = time.time() - startup_time
-    
-    # Determine overall status
-    if db_connected and ai_available:
-        status_text = "healthy"
-    elif db_connected:
-        status_text = "degraded"  # DB works but AI might not
-    else:
-        status_text = "unhealthy"
-    
-    return HealthCheckResponse(
-        status=status_text,
-        timestamp=datetime.now(),
-        version=VERSION,
-        database_connected=db_connected,
-        ai_service_available=ai_available,
-        uptime_seconds=uptime_seconds
-    )
+    """Lightweight health check — always returns 200 if the process is running."""
+    return {
+        "status": "ok",
+        "version": VERSION,
+        "uptime_seconds": round(time.time() - startup_time, 1),
+        "ai_configured": bool(os.getenv("ANTHROPIC_API_KEY")),
+    }
 
 
 # No authentication endpoints needed
